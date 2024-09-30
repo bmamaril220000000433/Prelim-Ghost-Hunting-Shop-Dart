@@ -1,21 +1,29 @@
-import 'package:ghost_hunting_shop/services/inventory.dart';
+import 'package:ghost_hunting_shop/global_providers.dart';
 import 'package:riverpod/riverpod.dart';
 
 class Allitems{
   final Ref container;
-  final Inventory inventory;
 
-  Allitems(this.container, this.inventory);
+  Allitems(this.container);
   
 void getAllItems(){
+  final inventory = container.read(inventoryProvider);
   List<String> items = 
-  ['EMF: ${inventory.emf}', 
+  ['EMF: ${inventory.emf}',
   'Thermometer Gun: ${inventory.thermometerGun}, ', 
   'Spirit Box: ${inventory.spiritBox}',
-  'Motion Camera: ${inventory.motionCamera}'];
+  'Parabolic Microphone: ${inventory.parabolicMicrophone}',
+  'Photo Camera: ${inventory.photoCamera}',
+  'Video Camera: ${inventory.videoCamera}',
+  'Motion Sensors: ${inventory.motionSensors}',
+  'Glowsticks: ${inventory.glowSticks}',
+  'RemPod: ${inventory.remPod}',];
 
+  print("---------------------------------");
+  print("Equipments Owned:");
   for (var items in items){
-    print(items);
+    print("> $items");
   }
+  print("---------------------------------");
 }
 }

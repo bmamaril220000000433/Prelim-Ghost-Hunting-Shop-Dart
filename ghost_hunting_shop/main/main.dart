@@ -1,9 +1,8 @@
 import 'dart:io';
-
 import 'package:riverpod/riverpod.dart';
-import 'global_providers.dart';
+import 'package:ghost_hunting_shop/global_providers.dart';
 
-void main(){
+Future<void> main() async {
   final container = ProviderContainer();
   final allitems = container.read(itemsProvider);
   final shop = container.read(shopProvider);
@@ -23,10 +22,11 @@ void main(){
       shop.purchase();
     }else if(choose == "2"){
       print("Selling which equipment?");
-      break; // Temporary break
+      shop.sell();
     }else if(choose == "3"){
-      print("Equipments Owned:");
       allitems.getAllItems();
+      print(">>> Opening Shop in 5 seconds... <<<");
+      await Future.delayed(Duration(seconds: 5));
     }else if(choose == "0"){
       print("you exited the shop, goodbye!");
       checker = 0;
